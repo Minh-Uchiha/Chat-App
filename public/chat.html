@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="./css/styles.min.css" />
+    <link rel="icon" href="./img/favicon.png" />
+    <title>Chat App</title>
+
+    <!--Import necessary libraries-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.11.0/qs.min.js"></script>
+
+    <!--Message template-->
+    <script class="message-template" type="text/html">
+      <div class="message">
+        <p>
+          <span class="message__name">{{username}}</span>
+          <span class="message__meta">{{createdAt}}</span>
+        </p>
+        <p>{{message}}</p>
+      </div>
+    </script>
+
+    <!--Location message template-->
+    <script class="location-message-template" type="text/html">
+      <div class="message">
+        <span class="message__name">{{username}}</span>
+        <span class="message__meta">{{createdAt}}</span>
+        <p><a href="{{location}}" target="_blank">My Location</a></p>
+      </div>
+    </script>
+
+    <!--Side bar template-->
+    <script class="sidebar-template" type="text/html">
+      <h2 class="room-title">{{room}}</h2>
+      <h3 class="list-title">User list</h3>
+      <ul class="users">
+        {{#users}}
+        <li>{{username}}</li>
+        {{/users}}
+      </ul>
+    </script>
+
+    <script src="/js/chat.js" defer></script>
+  </head>
+  <body>
+    <div class="chat">
+      <div class="chat__sidebar"></div>
+      <div class="chat__main">
+        <div class="messages chat__messages"></div>
+
+        <div class="compose">
+          <form class="message-form">
+            <input
+              type="text"
+              name="message"
+              placeholder="message"
+              required
+              autocomplete="off"
+            />
+            <br />
+            <button class="send-btn">Send</button>
+          </form>
+
+          <button class="send-coordinates-btn">Send location</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
